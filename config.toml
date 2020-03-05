@@ -10,6 +10,7 @@ googleAnalytics = ""            # UA-XXXXXXXX-X
 preserveTaxonomyNames = true
 toc = true                # 是否开启目录
 autoCollapseToc = true   # Auto expand and collapse toc
+hasCJKLanguage = true
 
 
 [blackfriday]
