@@ -61,3 +61,16 @@ preserveTaxonomyNames = true
     Email   = "zzzzip6@gmil.com"
     #Wechat = "/images/me/wechat.png"  # Wechat QRcode image
     Telegram = "xxoo"
+    
+# Valine.
+# You can get your appid and appkey from https://leancloud.cn
+# more info please open https://valine.js.org
+[params.valine]
+    enable = true #开关
+    appId = 'jYOoQf1fiqM8W9yLLQFElx0b-MdYXbMMI'
+    appKey = 'kBEzPfUjNEJ4MSrSRitotLRX'
+    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+    verify = false # Verification code
+    avatar = 'mp' #神秘人(一个灰白头像) 
+    placeholder = '说点什么吧...' #在评论框显示的温馨提示等
+    visitor = true #访问量统计
