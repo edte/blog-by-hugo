@@ -6,15 +6,12 @@ go:
 # branches:
 #   only:
 #     - master
-install:
-  # 安装最新的hugo
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.51/hugo_0.51_Linux-64bit.deb
-  - sudo dpkg -i hugo*.deb
-  # 安装主题
-  - git clone git@github.com:zzzzzip/blog-by-hugo.git
+install: go get -v github.com/spf13/hugo
+
 script:
   # 运行hugo命令
   - hugo
+  
 after_script:
   # 部署
   - cd ./public
