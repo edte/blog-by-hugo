@@ -38,7 +38,7 @@ hasCJKLanguage = true
     weight = 3
 
   [[menu.main]]
-    name = "About me"
+    name = "About"
     url = "/about/"
     weight = 4
 
