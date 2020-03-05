@@ -1,0 +1,18 @@
+sudo: false
+language: go
+git:
+    depth: 1
+install: go get -v github.com/gohugoio/hugo
+script: hugo
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: <$bc2db372bb66a33094b3c15008460726c2ef94f3>
+    on:
+        branch: master
+    local_dir: public
+    repo: zzzzzip/zzzzzip.github.io
+    fqdn: <custom-domain-if-needed>
+    target_branch: master
+    email: <zzzzip6@gmail.com>
+    name: <zzzzzip> 
