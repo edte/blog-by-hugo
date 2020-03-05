@@ -8,6 +8,9 @@ enableEmoji = true         # 允许表情
 enableRobotsTXT = true       # 允许爬虫
 googleAnalytics = ""            # UA-XXXXXXXX-X
 preserveTaxonomyNames = true
+toc = true                # 是否开启目录
+autoCollapseToc = true   # Auto expand and collapse toc
+
 
 [blackfriday]
   hrefTargetBlank = true
