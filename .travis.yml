@@ -5,10 +5,13 @@ language: go
 go:
   - "1.8" 
   
-#在容器内安装 Hugo
+  
+install:
+  # 安装最新的hugo
   - wget https://github.com/gohugoio/hugo/releases/download/v0.51/hugo_0.51_Linux-64bit.deb
   - sudo dpkg -i hugo*.deb
-
+  
+  
 # 运行hugo命令
 script:
   - hugo
