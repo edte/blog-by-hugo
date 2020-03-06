@@ -1,4 +1,4 @@
-baseURL = "https://zzzzzip.github.io/"        # url
+baseURL = "https://edte.github.io/"        # url
 languageCode = "en-us"
 title = "a-simple-bolg"           
 theme = "LeaveIt"
@@ -44,7 +44,7 @@ hasCJKLanguage = true
 
 [params]          # 参数
     since = 2020             # 站点建立时间
-    author = "zzzzzip"                           # Author's name
+    author = "edte"                           # Author's name
     avatar = "/images/me/avatar.jpeg"           # Author's avatar
     subtitle = "在思考的旅途中"         # Subtitle
     cdn_url = "www.baidu.com"           # Base CDN URL
@@ -61,7 +61,7 @@ hasCJKLanguage = true
     license= '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
 
 [params.social]       # 下方的图
-    GitHub = "zzzzzip"
+    GitHub = "edte"
     Email   = "zzzzip6@gmil.com"
     #Wechat = "/images/me/wechat.png"  # Wechat QRcode image
     Telegram = "xxoo"
