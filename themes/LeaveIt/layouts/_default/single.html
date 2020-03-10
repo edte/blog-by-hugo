@@ -2,9 +2,6 @@
 {{ $cdn_url := .Scratch.Get "cdn_url" }}
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-    	{{ if ( .Site.Params.toc | default true ) }}
-          {{ partial "toc.html" . }}
-        {{ end }}
         <h1 class="post-title" itemprop="name headline">{{ .Title }}</h1>
         <div class="post-meta">
            {{ with .Params.categories -}}
@@ -25,6 +22,10 @@
          <i class="far fa-clock"></i> <span class="more-meta"> {{ .ReadingTime }} 分钟</span>
         </div>
     </header>
+        {{ if ( .Site.Params.toc | default true ) }}
+          {{ partial "toc.html" . }}
+        {{ end }}
+
     <div class="post-content">
         <!--featured_image-->
 
