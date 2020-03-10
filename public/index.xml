@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>a-simple-bolg on a-simple-bolg</title>
+    <link>https://edte.github.io/</link>
+    <description>Recent content in a-simple-bolg on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Posts</title>
+      <link>https://edte.github.io/posts/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/posts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://edte.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/about/</guid>
+      <description>&lt;p&gt;在校大学生。&lt;/p&gt;
+&lt;p&gt;技术爱好者。&lt;/p&gt;
+&lt;p&gt;致力于使用技术改变生活。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

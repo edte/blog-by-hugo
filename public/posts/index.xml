@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on a-simple-bolg</title>
+    <link>https://edte.github.io/posts/</link>
+    <description>Recent content in Posts on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>books</title>
+      <link>https://edte.github.io/2020/books/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/books/</guid>
+      <description>代码大全 编写可读代码的艺术 代码整洁之道</description>
+    </item>
+    
+    <item>
+      <title>代码命名那些事</title>
+      <link>https://edte.github.io/2020/2020-03-08-%E4%BB%A3%E7%A0%81%E5%91%BD%E5%90%8D%E9%82%A3%E4%BA%9B%E4%BA%8B/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-08-%E4%BB%A3%E7%A0%81%E5%91%BD%E5%90%8D%E9%82%A3%E4%BA%9B%E4%BA%8B/</guid>
+      <description>[toc] 原则 选择描述性的词语，名称要能够描述它所代表的意思，要尽可能的存更多的意思。 检测 将名字告诉别人，如果别人的想到的和你考虑到的一样，那么代码</description>
+    </item>
+    
+    <item>
+      <title>经验</title>
+      <link>https://edte.github.io/2020/2020-03-07-%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Sat, 07 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-07-%E7%BB%8F%E9%AA%8C/</guid>
+      <description>加入一个社区 - github - Stack Overflow 拥有一位导师 读源码 读博客，学习别人怎么排版的 写博客，记笔记 买实体书前先找电子版 强迫自己不用鼠标（熟悉快捷键和强迫去了解</description>
+    </item>
+    
+    <item>
+      <title>github 进阶</title>
+      <link>https://edte.github.io/2020/2020-03-06-github-%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-06-github-%E8%BF%9B%E9%98%B6/</guid>
+      <description>原则：存在什么功能, 就有其规范。存在规范, 就能从别人那里学习。 README dictionary commit messge doc code test ci/cd pull GitHub 漫游指南 github-cheat-sheet 在校生如何在开源社区中成长？ 跳出弱鸡循环2</description>
+    </item>
+    
+    <item>
+      <title>使用 Travis CI 自动部署 Hugo 博客至 github pages</title>
+      <link>https://edte.github.io/2020/2020-03-05-%E4%BD%BF%E7%94%A8-travis-ci-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hugo-%E5%8D%9A%E5%AE%A2%E8%87%B3-github-pages/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-05-%E4%BD%BF%E7%94%A8-travis-ci-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hugo-%E5%8D%9A%E5%AE%A2%E8%87%B3-github-pages/</guid>
+      <description>[toc] 原理 在 github 上建立两个 repo, 一个用于放博客源码，假如名字是blog, 另一个用于部署博客, 名字符合 username.github.io 格式，username 是你的 github 名。用户只需将 blog clone</description>
+    </item>
+    
+    <item>
+      <title>Chrome 常用快捷键</title>
+      <link>https://edte.github.io/2020/2020-03-04-chrome-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-chrome-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>操作 快捷键 打开新窗口 Ctrl + n 在隐身模式下打开新窗口 Ctrl + Shift + n 打开新标签页 Ctrl + t 关闭当前标签页 Ctrl + w 关闭窗口 Ctrl + Shift + w 重新打开最后关闭的标签页 Ctrl</description>
+    </item>
+    
+    <item>
+      <title>Chrome 插件</title>
+      <link>https://edte.github.io/2020/2020-03-04-chrome-%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-chrome-%E6%8F%92%E4%BB%B6/</guid>
+      <description>1 Adblock Plus Adblock 是一款广告拦截插件,还可以自行拦截页面元素 2 Awesome Autocomplete for GitHub Awesome Autocomplete for GitHub 是一款 github 插件，可以使 github 直接在当前页面出现搜索结果 3 EditThisCookie EditThisCookie 是一个 cookie 管理器, 方</description>
+    </item>
+    
+    <item>
+      <title>GoLand 常用快捷键</title>
+      <link>https://edte.github.io/2020/2020-03-04-goland-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-goland-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>Ctrl 快捷键 介绍 Ctrl+ F 在当前文件进行文本查找 （必备） Ctrl+ R 在当前文件进行文本替换 （必备） Ctrl+ Z 撤销 （必备） Ctrl+ Y 删除光标所在行 或 删除选中的行 （必备） Ctrl+ X</description>
+    </item>
+    
+    <item>
+      <title>GoLand 插件</title>
+      <link>https://edte.github.io/2020/2020-03-04-goland-%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-goland-%E6%8F%92%E4%BB%B6/</guid>
+      <description>插件 1 Translation: 谷歌翻译 2 Statistic: 代码统计 3 OnlineSearch2: 提供搜索功能 4 key promoter x: 快捷键提示 5 Background Image Plus: 更换背景 6 .ignore: 7 Api Debugger: api 调试工具 8 bashsupport: 支持 bash 编写 9 json parser: json 格式化工具 10 material theme ui :</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://edte.github.io/2020/2020-03-04-helloworld/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-helloworld/</guid>
+      <description>Hello World! </description>
+    </item>
+    
+    <item>
+      <title>Linux 同时上内外网</title>
+      <link>https://edte.github.io/2020/2020-03-04-linux-%E5%90%8C%E6%97%B6%E4%B8%8A%E5%86%85%E5%A4%96%E7%BD%91/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-linux-%E5%90%8C%E6%97%B6%E4%B8%8A%E5%86%85%E5%A4%96%E7%BD%91/</guid>
+      <description>首先把网卡名字修改回eth0等默认的，没有则无需修改 参照 输入su进入root用户 输入route查看默认路由,如果提示不存在，先安装net-t</description>
+    </item>
+    
+    <item>
+      <title>Manjaro 基本配置</title>
+      <link>https://edte.github.io/2020/2020-03-04-manjaro-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-manjaro-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+      <description>[TOC] 换源 更换pacman的源,会自动弹出源，选择延迟低的，如中科大，或者清华的。 sudo pacman-mirrors -i -c China -m rank 更换 ArchLinuxCN 的软件源，选一个即可，无需与pacman的</description>
+    </item>
+    
+    <item>
+      <title>文案排版</title>
+      <link>https://edte.github.io/2020/2020-03-04-%E6%96%87%E6%A1%88%E6%8E%92%E7%89%88/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-%E6%96%87%E6%A1%88%E6%8E%92%E7%89%88/</guid>
+      <description>中文和英文间加空格 错误: 打开windows程序 正确: 打开 windows 程序 文字和数字间加空格 错误: 共1024元 正确: 共 1024 元 数字使用半角 错误: １０００ 正确</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://edte.github.io/1/11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/1/11/</guid>
+      <description>命令 说明 history 查看历史命令 history 10 查看最近10条命令 !10 执行第10个命令 !! 执行上一条命令 sudo !! root执行上一条命令 history |grep abc 或Ctrl + r 查询历史命令中有</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://edte.github.io/1/12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/1/12/</guid>
+      <description>心理暗示： 工具只用于一个用途，培养仪式感，如我的 kindle 一直放严肃书籍，从不放网络小说，那么我拿到 kindle 就不会去思考要看什么。这也是减少选择，让身体记</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://edte.github.io/1/13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/1/13/</guid>
+      <description>Stack Overflow 使用指南： 提问的智慧 如何有效地报告 Bug use english just do it</description>
+    </item>
+    
+  </channel>
+</rss>

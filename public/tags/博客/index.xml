@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on a-simple-bolg</title>
+    <link>https://edte.github.io/tags/%E5%8D%9A%E5%AE%A2/</link>
+    <description>Recent content in 博客 on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 Travis CI 自动部署 Hugo 博客至 github pages</title>
+      <link>https://edte.github.io/2020/2020-03-05-%E4%BD%BF%E7%94%A8-travis-ci-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hugo-%E5%8D%9A%E5%AE%A2%E8%87%B3-github-pages/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-05-%E4%BD%BF%E7%94%A8-travis-ci-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-hugo-%E5%8D%9A%E5%AE%A2%E8%87%B3-github-pages/</guid>
+      <description>[toc] 原理 在 github 上建立两个 repo, 一个用于放博客源码，假如名字是blog, 另一个用于部署博客, 名字符合 username.github.io 格式，username 是你的 github 名。用户只需将 blog clone</description>
+    </item>
+    
+  </channel>
+</rss>

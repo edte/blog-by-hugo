@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chrome on a-simple-bolg</title>
+    <link>https://edte.github.io/tags/chrome/</link>
+    <description>Recent content in Chrome on a-simple-bolg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://edte.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chrome 常用快捷键</title>
+      <link>https://edte.github.io/2020/2020-03-04-chrome-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-chrome-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>操作 快捷键 打开新窗口 Ctrl + n 在隐身模式下打开新窗口 Ctrl + Shift + n 打开新标签页 Ctrl + t 关闭当前标签页 Ctrl + w 关闭窗口 Ctrl + Shift + w 重新打开最后关闭的标签页 Ctrl</description>
+    </item>
+    
+    <item>
+      <title>Chrome 插件</title>
+      <link>https://edte.github.io/2020/2020-03-04-chrome-%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edte.github.io/2020/2020-03-04-chrome-%E6%8F%92%E4%BB%B6/</guid>
+      <description>1 Adblock Plus Adblock 是一款广告拦截插件,还可以自行拦截页面元素 2 Awesome Autocomplete for GitHub Awesome Autocomplete for GitHub 是一款 github 插件，可以使 github 直接在当前页面出现搜索结果 3 EditThisCookie EditThisCookie 是一个 cookie 管理器, 方</description>
+    </item>
+    
+  </channel>
+</rss>
