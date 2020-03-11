@@ -8,7 +8,7 @@ install:
   #- sudo dpkg -i hugo*.deb
   
 
-  这是 extend 版 hugo
+  #这是 extend 版 hugo
   - sudo snap install hugo --channel=extended
  
 
