@@ -46,7 +46,7 @@ hasCJKLanguage = true
     since = 2020             # 站点建立时间
     author = "edte"                           # Author's name
     avatar = "/images/me/avatar.jpeg"           # Author's avatar
-    subtitle = "just for fun"         # Subtitle
+    subtitle = "Just For Fun"         # Subtitle
     cdn_url = "www.baidu.com"           # Base CDN URL
     home_mode = "" # post or other
 
