@@ -128,6 +128,7 @@ date: 2020-03-25
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> |         |递进式取消选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展取消选中范围 `（必备）`|
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> |         |对当前类生成单元测试类，如果已经存在的单元测试类则可以进行选择 `（必备）`|
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> |         | 复制当前文件磁盘路径到剪贴板 `（必备）` |
+| Ctrl + shift +k | | git push origin master |
 | <kbd>F4</kbd>   |         | 编辑源 |
 |<kbd>Tab</kbd>   |         | 缩进 `（必备）` |
 
@@ -179,7 +180,7 @@ set clipboard=unnamed
 "  如 映射 gt 为 GotoTest, 则 nnoremap gt action:GotoTest<CR>   ,  <CR> 表示换行
 "
 "
-
+" action list : https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
 
 " insert mode 
 inoremap <C-h> <Left>
@@ -208,8 +209,15 @@ nnoremap gt   :action GotoTest<CR>
 " Run
 nnoremap r :action Run<CR>
 
+" 移动 Tabs
+nnoremap  <C-H>     :action PreviousTab<CR>
+nnoremap  <C-L>     :action NextTab<CR>
+nnoremap  <C-k>     :action GitFileActions<CR>
+
+
 " 保存时候自动格式化代码
 map <C-s> :action ReformatCode<CR> :w <CR>
+
 
 ```
 
