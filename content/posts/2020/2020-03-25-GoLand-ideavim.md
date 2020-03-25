@@ -230,7 +230,7 @@ inoremap <C-s>  <ESC>  :action ReformatCode<CR> :w <CR>
 nnoremap s   :action ShowSettings<CR>
 
 " 关闭 Tab
-nnoremap <  :action CloseContent<CR>
+nnoremap `  :action CloseContent<CR>
 
 " 快速实现接口
 nnoremap <C-i> :action ImplementMethods<CR>
@@ -249,6 +249,10 @@ nnoremap gt   :action GotoTest<CR>
 
 " 快速插入 live template
 nnoremap <C-j>  :action   InsertLiveTemplate<CR>
+
+" 前进/后退   移动光标
+nnoremap   <      :action Back<CR>
+nnoremap   >      :action Forward<CR>
 
 ```
 
