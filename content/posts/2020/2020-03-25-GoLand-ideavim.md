@@ -84,7 +84,8 @@ date: 2020-03-25
 | Ctrl+shift+Z | Ctrl + R     | 取消撤销      |
 |                                       | P           | 在光标之前粘贴                                               |
 |                                       | p            | 在光标之后粘贴                                                  |
-|                                       |          ||
+|                                       | >> |此行缩进一个 Tab|
+| | << |此行取消缩进一个 Tab|
 
 
 
@@ -152,7 +153,7 @@ set smartcase
 set incsearch
 
 " 检索时高亮显示匹配项
-set hlsearch                 
+" set hlsearch                 
 
 " 共享系统粘贴板
 set clipboard=unnamed
@@ -160,13 +161,14 @@ set clipboard=unnamed
 
 
 " 键位映射 map 命令, 在所有模式下均生效
+" 可以在 http://haoxiang.org/2011/09/vim-modes-and-mappin/  查看
 " 可以添加一些前缀实现不同的模式
 " nore      表示非递归
 " n         表示 command mode 
 " i         表示 insert mode
 " c         表示 last line mode
 " v         表示 visual mode
-"
+" un        表示 清除映射
 "
 " 键位表示
 " 字母: 如映射 qq 为 G, 则 nnoremap qq G, 在 command mode 下输入 qq 就输入 G
@@ -203,21 +205,50 @@ nnoremap gf   :action GotoFile<CR>
 " 跳转到定义
 nnoremap gd   :action GotoDeclaration<CR>
 
-" 跳转到测试
-nnoremap gt   :action GotoTest<CR> 
-
 " Run
 nnoremap r :action Run<CR>
 
+" 移动到行首/末
+nnoremap H  0
+nnoremap L  $
+
+
 " 移动 Tabs
-nnoremap  <C-H>     :action PreviousTab<CR>
-nnoremap  <C-L>     :action NextTab<CR>
+nnoremap  J     :action PreviousTab<CR>
+nnoremap  K     :action NextTab<CR>
+
+
+" 打开 git commit 
 nnoremap  <C-k>     :action GitFileActions<CR>
 
 
 " 保存时候自动格式化代码
-map <C-s> :action ReformatCode<CR> :w <CR>
+nnoremap <C-s> :action ReformatCode<CR> :w <CR>
+inoremap <C-s>  <ESC>  :action ReformatCode<CR> :w <CR>
 
+" 打开设置
+nnoremap s   :action ShowSettings<CR>
+
+" 关闭 Tab
+nnoremap <  :action CloseContent<CR>
+
+" 快速实现接口
+nnoremap <C-i> :action ImplementMethods<CR>
+
+" 快速给 struct 生成构造函数
+nnoremap go   :action GoGenerateConstructorAction<CR>
+
+" 调用函数时, 快速生成返回值, 光标要在函数后
+nnoremap   gi    :action IntroduceVariable<CR>
+
+" 快速生成返回值, 光标要在 return 后
+nnoremap   gr      :action CodeCompletion<CR>
+
+" 快速生成测试文件
+nnoremap gt   :action GotoTest<CR> 
+
+" 快速插入 live template
+nnoremap <C-j>  :action   InsertLiveTemplate<CR>
 
 ```
 
