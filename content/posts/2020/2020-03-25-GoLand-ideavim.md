@@ -254,6 +254,21 @@ nnoremap <C-j>  :action   InsertLiveTemplate<CR>
 nnoremap   <      :action Back<CR>
 nnoremap   >      :action Forward<CR>
 
+" 退出 ide
+nnoremap   <ESC><ESC><ESC>     :action Exit<CR>
+
+" 上写移动此行
+nnoremap <A-k>    :action MoveLineUp<CR>
+nnoremap <A-j>    :action MoveLineDown<CR>
+
+
+" 打开 terminal  , 在打开 View/appearance/Toolbar 和关闭 Tool window Bars 后
+nnoremap  <A-t>       :action ActivateTerminalToolWindow<CR>
+
+
+
+
+
 ```
 
 
