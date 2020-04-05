@@ -184,13 +184,6 @@ set clipboard=unnamed
 "
 " action list : https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
 
-" insert mode 
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-
-
 
 " command mode
 " 弹出输入框，跳转到指定操作
@@ -207,11 +200,6 @@ nnoremap gd   :action GotoDeclaration<CR>
 
 " Run
 nnoremap r :action Run<CR>
-
-" 移动到行首/末
-nnoremap H  0
-nnoremap L  $
-
 
 " 移动 Tabs
 nnoremap  J     :action PreviousTab<CR>
@@ -264,8 +252,6 @@ nnoremap <A-j>    :action MoveLineDown<CR>
 
 " 打开 terminal  , 在打开 View/appearance/Toolbar 和关闭 Tool window Bars 后
 nnoremap  <A-t>       :action ActivateTerminalToolWindow<CR>
-
-
 
 
 
