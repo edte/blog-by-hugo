@@ -1,3 +1,13 @@
+---
+
+title: arch安装及配置 
+author: "edte" 
+date: 2020-04-21 
+
+---
+
+
+
 ### u 盘准备
 
 从 [下载页面](https://www.archlinux.org/download/) 选择下好 iso 文件, 插入 u 盘
@@ -97,3 +107,5 @@ SigLevel = Optional TrustedOnly
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch   
 
 Server = https://mirrors.tuna.tsinghua
+
+```
