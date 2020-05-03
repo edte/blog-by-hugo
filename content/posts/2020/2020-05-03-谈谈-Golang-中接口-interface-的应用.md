@@ -1,5 +1,5 @@
 ---
-title: 谈谈 Goland 中接口 interface 的应用
+title: 谈谈 Golang 中接口 interface 的应用
 author: "edte"
 categories: ["Goland"]
 date: 2020-05-03
