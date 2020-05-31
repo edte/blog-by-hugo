@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "a-simple-bolg"           
 theme = "LeaveIt"
 
-paginate = 12      # 首页每页显示的文章数
+paginate = 18      # 首页每页显示的文章数
 enableEmoji = true         # 允许表情
 enableRobotsTXT = true       # 允许爬虫
 googleAnalytics = ""            # UA-XXXXXXXX-X
