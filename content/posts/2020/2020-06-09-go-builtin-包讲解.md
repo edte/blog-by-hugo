@@ -165,15 +165,111 @@ type uintptr uintptr
 
 ### int8/int16/int32/int64/int
 
+我们前面讲了 uint，这里讲解 int，没有了 u 前缀，我们容易理解 int 表示一一般的 int 型，对于 unsigned int 的范围是正数，而 int 型则根据其存储方式范围有正有负，后面的数字同样表示其占的 bit 数
 
+```
+// int8 is the set of all signed 8-bit integers.
+// Range: -128 through 127.
+type int8 int8
+
+// int16 is the set of all signed 16-bit integers.
+// Range: -32768 through 32767.
+type int16 int16
+
+// int32 is the set of all signed 32-bit integers.
+// Range: -2147483648 through 2147483647.
+type int32 int32
+
+// int64 is the set of all signed 64-bit integers.
+// Range: -9223372036854775808 through 9223372036854775807.
+type int64 int64
+```
+
+我们来看一下
+
+```
+func main() {
+	fmt.Println(math.Pow(2, 8) / 2)  //128
+	fmt.Println(math.Pow(2, 16) / 2)  //32768
+	fmt.Println(math.Pow(2, 32) / 2)  //2.147483648e+09
+	fmt.Println(math.Pow(2, 64) / 2) //9.223372036854776e+18
+}
+```
+
+可以看到其范围是对上的，不知道怎么回事请先学习 int 的存储方式。
+
+我们再来看 int 型，类似于 uint
+
+```
+// int is a signed integer type that is at least 32 bits in size. It is a
+// distinct type, however, and not an alias for, say, int32.
+type int int
+```
+
+这个类型同样是一个不定的类型，根据平台知道分配 32 或 64 bit。
 
 ### float32/float64
 
+我们继续来看 float
+
+```
+// float32 is the set of all IEEE-754 32-bit floating-point numbers.
+type float32 float32
+
+// float64 is the set of all IEEE-754 64-bit floating-point numbers.
+type float64 float64
+```
+
+可以看到 float32/float64 即遵从 IEEE-754 标准的常用的单精度/双精度浮点数，类似 c 中的 float 和 double，至于 float 是什么，IEEE-754 标准是什么，这里就不展开了。
+
 ### complex64/complex128
+
+```
+// complex64 is the set of all complex numbers with float32 real and
+// imaginary parts.
+type complex64 complex64
+
+// complex128 is the set of all complex numbers with float64 real and
+// imaginary parts.
+type complex128 complex128
+```
+
+看注释我们知道 complex 是复数类型，并且虚数和实数要是同一种 type，go 里只有两种，虚数和实数是 float32 的建立 complex64 type，虚数和实数是 float64 的建立 complex128 type，数字就是虚数和实数的 bit 相加，比较容易理解。
+
+### byte/rune
+
+我们先来看 byte
+
+```
+// byte is an alias for uint8 and is equivalent to uint8 in all ways. It is
+// used, by convention, to distinguish byte values from 8-bit unsigned
+// integer values.
+type byte = uint8
+```
+
+可以看到 byte 即是 uint8, 只是用 type 别名了一下，uint8 我们先前知道即是无符号整型，占 8 bit，即 1 byte，也就是 1 字节，我们知道 byte 在计算机中是一个基本单位，那么 alias 一下便于使用也能理解，但是 rune 又是什么玩意？
+
+```
+// rune is an alias for int32 and is equivalent to int32 in all ways. It is
+// used, by convention, to distinguish character values from integer values.
+type rune = int32
+```
+
+我们看到 rune 是 int32 的别名，也就是 4 byte, 为什么要单独把这个东西列出来呢？注释说是为了区分 char 和 int 型，这样看着我们也难以理解，还是来看代码吧
+
+```
+
+```
+
+
+
+
+
+
 
 ### string
 
-### byte/rune
+
 
 
 
