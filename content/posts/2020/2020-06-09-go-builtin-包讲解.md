@@ -255,19 +255,613 @@ type byte = uint8
 type rune = int32
 ```
 
-我们看到 rune 是 int32 的别名，也就是 4 byte, 为什么要单独把这个东西列出来呢？注释说是为了区分 char 和 int 型，这样看着我们也难以理解，还是来看代码吧
-
-```
-
-```
-
-
-
-
-
-
+我们看到 rune 是 int32 的别名，也就是 4 byte, 为什么要单独把这个东西列出来呢？注释说是为了区分 char 和 int 型。这里显然需要具体了解 string, char，字符编码等底层知识，这里就不展开了。
 
 ### string
+
+我们来继续讲解 string
+
+```
+// string is the set of all strings of 8-bit bytes, conventionally but not
+// necessarily representing UTF-8-encoded text. A string may be empty, but
+// not nil. Values of string type are immutable.
+type string string
+```
+
+可以看到 string 是 8 bit 的 slice, 也就是 byte slice, 使用的是 UTF-8 编码，只读，可以是空字符串，但不能是 nil, 我们来看代码
+
+```
+func main() {
+	a := ""
+
+	fmt.Println(reflect.TypeOf(a))   //string
+	fmt.Println(reflect.ValueOf(a))  // 
+	fmt.Println(len(a))      // 0 
+	
+	a = nil  //cannot use nil as type string in assignment
+	
+	a[0] = "sdf" //cannot assign to a[0]
+}
+```
+
+可以看到的确可以为空字符串，其 byte length 为 0,输出空字符串，不能为 nil，且 string 这个 slice 是不能修改的。（len 返回 string 的 byte length)
+
+我们再看
+
+```
+func main() {
+	a := "啊"
+	fmt.Println(len(a))  // 3
+}
+```
+
+我们知道 中文在 Unicode 中占 2 byte，在 UTF-8 中 占 3 byte，可以看到的确是使用了 UTF-8 编码。但这也带来一些问题，比如如果某个字符串中有中文字符，想要获取这个字符串的字符个数，而不是 byte 长都，怎么办呢，显然 len 函数是不行的，又或者我们想要字符串的某个字符，直接使用下标 `a[3]` 是不行的，这得到的是第几个 byte, 这些问题都是我们有时会遇到的，这里就不展开了，其实 rune 就可以在这种情况中使用。
+
+### iota
+
+我们发现 builtin 包中有个 iota 常量，如果稍微对 go 熟悉一点的话，就知道 strconv 包中也有个 itoa 函数，不过 strconv(string convert) 中的 itoa(int to ascii) 是 int 转 string 用的，这里的 iota 显然不一样。我们来看注释
+
+```
+// iota is a predeclared identifier representing the untyped integer ordinal
+// number of the current const specification in a (usually parenthesized)
+// const declaration. It is zero-indexed.
+const iota = 0 // Untyped int.
+```
+
+可以看到这个是一个常量计数器，只能在 const 语句中使用，默认从 0开始，后面递增赋值
+
+```
+func main() {
+	fmt.Println(iota)  //undefined: itoa
+}
+```
+
+可以看到我们不能直接使用 iota 常量
+
+```
+const a = iota
+
+func main() {
+	fmt.Println(a) // 0
+}
+```
+
+```
+const (
+	a = iota
+	b
+)
+
+func main() {
+	fmt.Println(a) // 0
+	fmt.Println(b)  //1
+}
+```
+
+```
+const (
+	a = iota
+	b
+)
+
+const c = iota
+
+func main() {
+	fmt.Println(a) // 0
+	fmt.Println(b) // 1
+	fmt.Println(c) // 0
+}
+```
+
+根据上面我们知道 在不同的 const 语句中会重新从 0 开始，如果我们要跳过某个值的话，可以使用空白标识符 `_` 占位
+
+```
+const (
+	a = iota
+	_
+	b
+)
+
+func main() {
+	fmt.Println(a) // 0
+	fmt.Println(b) // 2
+}
+```
+
+```
+const (
+	a = iota
+	_
+	b
+	c = 1
+	d
+	e
+)
+
+func main() {
+	fmt.Println(a) // 0
+	fmt.Println(b) // 2
+	fmt.Println(c) // 1
+	fmt.Println(d) // 1
+	fmt.Println(e) // 1
+}
+```
+
+可以看到如果某个值直接赋值了的话，后面会默认赋相同的值。
+
+这里我们大概讲解了 iota 的使用，当然还用具体实际的应用和一些注意点，这里就不展开了。
+
+### Type/Type1/IntegerType/FloatType/ComplexType
+
+这么一长串在 go 中都没有对应的预定义标识符，完全是为了生成文档，为什么要搞这几类，我们这里就不去了解了
+
+```
+// Type is here for the purposes of documentation only. It is a stand-in
+// for any Go type, but represents the same type for any given function
+// invocation.
+type Type int
+
+// Type1 is here for the purposes of documentation only. It is a stand-in
+// for any Go type, but represents the same type for any given function
+// invocation.
+type Type1 int
+
+// IntegerType is here for the purposes of documentation only. It is a stand-in
+// for any integer type: int, uint, int8 etc.
+type IntegerType int
+
+// FloatType is here for the purposes of documentation only. It is a stand-in
+// for either float type: float32 or float64.
+type FloatType float32
+
+// ComplexType is here for the purposes of documentation only. It is a
+// stand-in for either complex type: complex64 or complex128.
+type ComplexType complex64
+```
+
+### nil
+
+nil 是我们在错误处理时常遇到的，我们这里来稍微深入一下
+
+```
+// nil is a predeclared identifier representing the zero value for a
+// pointer, channel, func, interface, map, or slice type.
+var nil Type // Type must be a pointer, channel, func, interface, map, or slice type
+```
+
+可以看到 nil 是一种 value，不是一种 type，这种 value 是 pointer, channerl, func, interface, map, slice 没有赋值时默认的 value。我们先来看这之外的 type
+
+```
+type A struct {
+	i int
+	f float32
+	c complex64
+	s string
+}
+
+func main() {
+	var a A
+	fmt.Println(reflect.ValueOf(a))  //{0 0 (0+0i) }
+}
+```
+
+可以看到， int 为赋值时默认 value 为 0, float 为赋值时默认 value 为 0, complex 为赋值时默认 value 为 0+0i, string 为赋值时默认 value 为 ""。 struct 则要看具体的 filed，如果没有 filed 则 是 `{}`.
+
+```
+func main() {
+	a := nil //Cannot use 'nil' as type Type
+	fmt.Println(a)
+}
+```
+
+可以看到 nil 不是一种 type
+
+```
+func main() {
+	fmt.Println(reflect.TypeOf(nil))  //<nil>
+	fmt.Println(reflect.ValueOf(nil)) // <invalid reflect.Value>
+}
+```
+
+但是这里 却显示 nil 是一种 type ，暂时不知道为什么。
+
+
+
+现在我们来看空 value 为 nil 的几种 type
+
+pointer
+
+```
+func main() {
+	var p *int
+
+	fmt.Println(reflect.TypeOf(p))  //*int
+	fmt.Println(reflect.ValueOf(p)) // <nil>
+	fmt.Println(p == nil)  //true
+}
+```
+
+slice
+
+```
+func main() {
+	var s []int
+
+	fmt.Println(reflect.TypeOf(s))  //[]int
+	fmt.Println(reflect.ValueOf(s)) // []
+	fmt.Println(s == nil)  //true
+}
+```
+
+interface
+
+```
+func main() {
+	var a interface{}
+	fmt.Println(reflect.TypeOf(a))  // <nil>
+	fmt.Println(reflect.ValueOf(a)) //<invalid reflect.Value>
+	fmt.Println(a == nil)           //true
+}
+```
+
+map
+
+```
+func main() {
+	var a map[int]string
+
+	fmt.Println(reflect.TypeOf(a))  // map[int]string
+	fmt.Println(reflect.ValueOf(a)) // map[]
+	fmt.Println(a == nil)           // true
+}
+```
+
+channel
+
+```
+func main() {
+	var a chan int
+
+	fmt.Println(reflect.TypeOf(a))  // chan int
+	fmt.Println(reflect.ValueOf(a)) // <nil>
+	fmt.Println(a == nil)           // true
+}
+```
+
+func
+
+```
+func main() {
+	var a func()
+
+	fmt.Println(reflect.TypeOf(a))  // func()
+	fmt.Println(reflect.ValueOf(a)) // <nil>
+	fmt.Println(a == nil)           // true
+}
+```
+
+现在我们已经知道什么时候会出现 nil，那么具体 nil 的应用就要看具体哪一种类型了，如 error interface 为 nil 的话，就是没有错误，这也是我们最常用的一种，其他具体的应用这里就不展开了。
+
+### complex/real/imag
+
+我们在前面讲了 complex 这种类型，但是要创建一个 complex 的话还需要借助 complex 这个内置 func
+
+```
+// The complex built-in function constructs a complex value from two
+// floating-point values. The real and imaginary parts must be of the same
+// size, either float32 or float64 (or assignable to them), and the return
+// value will be the corresponding complex type (complex64 for float32,
+// complex128 for float64).
+func complex(r, i FloatType) ComplexType
+```
+
+可以看到传入两个 type 相同的 float，返回一个对于的 complexType, 如
+
+```
+func main() {
+	c := complex(1, 2)
+	fmt.Println(reflect.TypeOf(c))   //complex128
+	fmt.Println(reflect.ValueOf(c))  // 1+2i
+}
+```
+
+我们知道复数是有实部（real) 和虚部（imaginary) 的，同样的，在 go 中也有 real(), ima() 函数获取对应的值
+
+```
+// The real built-in function returns the real part of the complex number c.
+// The return value will be floating point type corresponding to the type of c.
+func real(c ComplexType) FloatType
+
+// The imag built-in function returns the imaginary part of the complex
+// number c. The return value will be floating point type corresponding to
+// the type of c.
+func imag(c ComplexType) FloatType
+```
+
+```
+func main() {
+	c := complex(1, 2)
+	fmt.Println(real(c)) // 1
+	fmt.Println(imag(c)) // 2
+}
+```
+
+### append
+
+```
+// The append built-in function appends elements to the end of a slice. If
+// it has sufficient capacity, the destination is resliced to accommodate the
+// new elements. If it does not, a new underlying array will be allocated.
+// Append returns the updated slice. It is therefore necessary to store the
+// result of append, often in the variable holding the slice itself:
+//	slice = append(slice, elem1, elem2)
+//	slice = append(slice, anotherSlice...)
+// As a special case, it is legal to append a string to a byte slice, like this:
+//	slice = append([]byte("hello "), "world"...)
+func append(slice []Type, elems ...Type) []Type
+```
+
+我们先来看注释，注释说 append 用来给 slice 增加元素的，而且是在末尾追加。我们知道 slice 有 cap（分配的内存长度） 和 len（实际存储的元素个数），注释说，如果 cap 够，那么直接在这个 slice 中添加元素，如果不够，那么间新建一个 array。所以需要有一个返回值 slice。这里我们了解到，slice 其实底层就是 array，并不存在变长这么个操作，只是重新分配内存然后赋值而已。
+
+很多时候我们只是操作一个 slice, 所以一般都是把返回的 slice 赋给它本身，这样从结果看来似乎就是 slice 变长了。我们来看代码
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	b := append(a, 4, 5)
+	fmt.Println(b) // [1 2 3 4 5]
+	fmt.Println(a) // [1 2 3]
+}
+```
+
+可以看到原来的 slice a 并没有变化。
+
+当然更多的时候我们是这样用的
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	a = append(a, 4, 5)
+	fmt.Println(a) // [1 2 3 4 5]
+}
+```
+
+我们继续看注释，append 的第二个参数原来还可以是 slice, 我们来继续
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	b := []int{4, 5}
+	fmt.Println(append(a, b...)) // [1 2 3 4 5]
+}
+```
+
+我们发现需要加 `...`, 这个是 go 的一个语法糖，用来表示可变参数，这里就是把 b slice 中的元素以此传进去。
+
+当然，有时候我们会问如果类型不同怎么办
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	b := []string{"df", "sd"}
+	fmt.Println(append(a, b...)) //cannot use b (type []string) as type []int in append
+}
+```
+
+那当然是报 error 了。
+
+我们继续看注释，还有种特殊情况，第一个 slice 是 byte slice 时，第二个参数可以直接是 string
+
+```
+func main() {
+	a := append([]byte("hello "), "word"...)
+	fmt.Println(a)         // [104 101 108 108 111 32 119 111 114 100]
+	fmt.Println(string(a)) // hello word
+}
+```
+
+我们发现成功返回了 byte slice, 转换看一下也成功了，如果我们了解 string 的底层原理的话，我们就知道 string 其实就是 byte slice, 所以这种其实和第二个参数是 slice 原理相同，只是需要考虑是否会在字符编码的问题。
+
+### copy
+
+我们刚刚讲了 append() 这个给 slice 增加 elem 的 func，现在我们来继续讲一个和 slice 相关的。
+
+```
+// The copy built-in function copies elements from a source slice into a
+// destination slice. (As a special case, it also will copy bytes from a
+// string to a slice of bytes.) The source and destination may overlap. Copy
+// returns the number of elements copied, which will be the minimum of
+// len(src) and len(dst).
+func copy(dst, src []Type) int
+```
+
+我们从注释中得知，这个函数用来复制 slice, 我们可能会问，为什么不直接声明一个变量赋值或短声明直接赋值呢，语言是苍白的，我们来看代码
+
+```
+func main() {
+	a := []int{1, 3, 4, 5}
+	var b []int
+	b = a
+
+	fmt.Printf("%p\n", a) // 0xc000100020
+	fmt.Printf("%p", b)   // 0xc000100020
+}
+```
+
+```
+func main() {
+	a := []int{1, 3, 4, 5}
+	b := a
+
+	fmt.Printf("%p\n", a) // 0xc000018240
+	fmt.Printf("%p", b)   // 0xc000018240
+}
+```
+
+我们发现两个 slice 的 地址是相同的，这说明它们根本指向的是一个东西，对一个操作会影响另一个变量。不行的话看
+
+```
+func main() {
+	a := []int{1, 3, 4, 5}
+	b := a
+	b[0] = 100
+
+	fmt.Println(a[0]) //100
+}
+```
+
+那么这是为什么呢，如果我们知道 slice 的存储原理，或者学过 c 语言就比较容易理解，变量名存储的其实 slice 的首地址，直接赋值只是把首地址，也就是指针给传过去了，根本没有分配新的内存空间，自然会失败了。
+
+而 copy 函数，我们看到传入了 dst slice 和 src slice，即 目标（destination） slice 和 源（source） slice，分配了两块内存空间。我们知道有可能其中一个会溢出，所以会返回成功赋值成功的元素个数。我们来看代码
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	b := make([]int, 2)
+
+	copy(b, a) // 把 a 的元素 复制 b，b 的 len 是 2 , a 是 3,所以 b 溢出了，只能复制前两个元素 1 和 2
+
+	fmt.Println(b) // [1,2]
+}
+```
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	b := make([]int, 5)
+
+	copy(b, a) // 把 a 的元素 复制 b，b 的 len 是 5 , a 是 3,所以 a 的元素不够，剩余的元素不变，这里 int 型没有赋值是 0
+
+	fmt.Println(b) // [1,2,3,0,0]
+}
+```
+
+```
+func main() {
+	a := []int{1, 2, 3}
+	b := []int{10, 11, 12, 13, 14}
+
+	copy(b, a)
+
+	fmt.Println(b) // [1,2,3,13,14]
+}
+```
+
+### delete
+
+```
+// The delete built-in function deletes the element with the specified key
+// (m[key]) from the map. If m is nil or there is no such element, delete
+// is a no-op.
+func delete(m map[Type]Type1, key Type)
+```
+
+可以看到这个函数用于根据 key 删除 map 的 element。
+
+```
+func main() {
+	a := map[int]string{1: "ha", 2: "Sdf", 3: "gweg"}
+	fmt.Println(a) //map[1:ha 2:Sdf 3:gweg]
+	delete(a, 1)
+	fmt.Println(a) // map[2:Sdf 3:gweg]
+}
+```
+
+可以看到成功删除成功，根据注释，可以知道当 map 为 nil，即没有给 map 赋值时，或者 key 不存在，那么什么也不做
+
+```
+func main() {
+	a := map[int]string{1: "ha", 2: "Sdf", 3: "gweg"}
+	fmt.Println(a) //map[1:ha 2:Sdf 3:gweg]
+
+	delete(a, 0)   // key not exits
+	fmt.Println(a) //map[1:ha 2:Sdf 3:gweg]
+}
+```
+
+```
+func main() {
+	a := make(map[int]string)
+	fmt.Println(a) // map[]
+
+	delete(a, 0)   // map nil  (equal key not exits)
+	fmt.Println(a) // map[]
+}
+```
+
+### len/cap
+
+
+
+### make/new
+
+
+
+### close
+
+
+
+
+
+### panic/recover
+
+
+
+### prinln/print
+
+这是两个很少用的 func，但是既然出现了我们还是来看一下吧
+
+```
+// The print built-in function formats its arguments in an
+// implementation-specific way and writes the result to standard error.
+// Print is useful for bootstrapping and debugging; it is not guaranteed
+// to stay in the language.
+func print(args ...Type)
+```
+
+可以看到，print 函数输出 stderr, 不像 fmt 包中 print 输出 stdout，在一些对这些有高亮显示的就能区分。同样 print 主要用于自举和 debug，而且还不一定保证以后不会去掉。
+
+```
+// The println built-in function formats its arguments in an
+// implementation-specific way and writes the result to standard error.
+// Spaces are always added between arguments and a newline is appended.
+// Println is useful for bootstrapping and debugging; it is not guaranteed
+// to stay in the language.
+func println(args ...Type)
+```
+
+而 println 比 print 就是多了个在参数和新行后加空格，这些设计肯定是有其原因的，但是一般的开发者也用不了。这里简单的用代码讲解一下，以后该用 fmt 包就老老实实的用 fmt 包
+
+```
+func main() {
+	a := struct{}{}
+
+	print(a) // illegal types for operand: print
+
+	b := [10]int{}
+	print(b) // illegal types for operand: print
+}
+```
+
+我们发现这两个参数不能打印 struct 和 slice
+
+```
+func main() {
+	a := []int{}
+
+	println(a) // [0/0]0xc00003c778
+
+	print(errors.New("sdf")) // (0x48a7c0,0xc00003c768)
+}
+```
+
+然后打印组合型的参数时，打印底层的地址，而 fmt 包中的函数则打印 value。
+
+总之，这两个函数是个特殊的函数，一般也用不上，了解下就行了。 
+
+### error
+
+
 
 
 
@@ -282,3 +876,4 @@ type rune = int32
 [example for the go pkg's function](https://github.com/astaxie/gopkg)
 
 [Golang 中 fmt.Println 和直接 println 有什么区别](https://www.zhihu.com/question/335186436)
+
