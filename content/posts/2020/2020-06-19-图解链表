@@ -106,17 +106,107 @@ insert 和 delete 不算遍历的过程，只是执行 insert  和 delete 的话
 
 ![](https://ae03.alicdn.com/kf/Hff7052eca616455fb0baab6c53f58bf5v.png)
 
-静态链表：链表分为静态和动态，动态即内存不连续分配，静态这连续分配，用数组实现，我们一般说链表都说的动态链表（草，什么 jb 翻译，老子半天没搞懂）
+静态链表：链表分为静态和动态，动态即内存不连续分配，静态这连续分配，用数组实现，我们一般说链表都说的动态链表（草，什么 sb 翻译，老子半天没搞懂）
 
 注意静态链表和顺序表的区别
 
-
-
-
-
-
-
 ## 单链表
+
+### create
+
+>  单链表是链表中的一种，每个 node 存下一个 node 的地址以及数据，单链表是单向的。
+
+single linked list 是由 node 组成的，要实现的话首先就要实现 node
+
+![](https://ae03.alicdn.com/kf/Hb4967451ed404cbb85ce9f10468eb4a9c.png)
+
+```
+// single linked list node
+typedef struct {
+    int data;  // data filed
+    struct Node *next;  // pointer filed
+} Node;
+```
+
+这段代码声明了 single linked list 的 node ，然后声明了存数据的 data，以及存下一个 node address 的 next.
+
+我们在前面说了，单链表可以有头节点或没有，很多时候我们会建立头节点，所以这里还是以有头节点为例子。
+
+我们继续，来创个函数来声明 single linked list
+
+![](https://ae02.alicdn.com/kf/Hed23afa0a05c4e168399bbd7468e13a8O.png)
+
+```
+// CreateList 建立一个有头节点的单链表
+Node *Createlist() {
+    // 头节点
+    Node *new_node = malloc(sizeof(int));
+    if (new_node == NULL) {
+        printf("crete linked list failed!");
+        exit(-1);
+    }
+    // 空表，指向 NULL
+    new_node->next = NULL;
+//    new_node->data=  0;
+    return new_node;
+}
+```
+
+这个函数建立了一个有头节点的单链表，然后返回头节点，要使用的话，需要赋值给头指针，如
+
+```
+int main(void) {
+	Node *head = Createlist();
+	
+	return 0;
+} 
+```
+
+我们在这个函数中，使用 malloc 函数分配了内存给头节点，然后判断是否分配成功，再指向 NULL，然后头节点的 data filed 自己看存什么数据，这里我们没有存有意义的数据。然后返回这个头节点。
+
+
+
+这个函数没有传入参数，而是把头节点返回，我们也可以把头节点直接传进去，如
+
+```
+// 传入 Node 指针的指针，因为要在函数改变 Node 指针的值
+void CreateList(Node **head) {
+    // 先给头节点动态分配内存，然后把头指针指向这块内存，即指向头节点
+    *head = (Node *) malloc(sizeof(int));
+    if (*head == NULL) {
+		printf("create single linked list failed!");
+	}
+    (*head)->next = NULL;
+//    (*head)->data = 0;
+}
+```
+
+这个函数同样的创建了一个有头节点的单链表，不过是把头指针当做参数传进去的。需要注意的是头指针 (head) 本身是指向节点的指针（Node *)，而要在函数中改变变量的值，需要传入其地址，故这里是传入头指针的地址，则传入就是指针的指针。然后分配内存，头指针指向头节点，设置 NULL，设置 data，这和刚才返回头节点的函数是相同的。
+
+要使用的话，需要传头指针
+
+```
+int main(void) {
+	Node *head = NULL;
+	CreateList(&head);
+	
+	return 0;
+}
+```
+
+### insert
+
+
+
+
+
+
+
+### search
+
+### updte
+
+### delete
 
 
 
@@ -138,3 +228,4 @@ insert 和 delete 不算遍历的过程，只是执行 insert  和 delete 的话
 
 ## 参考
 
+[链表](https://zh.wikipedia.org/wiki/链表)
