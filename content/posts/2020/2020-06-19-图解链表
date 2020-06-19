@@ -196,6 +196,122 @@ int main(void) {
 
 ### insert
 
+链表除了操作表本身，就是操作节点了。对链表节点的插入是比较常用的，这里有几种情况。
+
+首先我们来谈谈直接在末尾插入节点，要插入节点，首先要找到目标节点的位置，链表不支持随机访问（random access), 因为每个 node 的地址是不能直接拿到的，所以只能遍历去找目标节点。
+
+![](https://ae03.alicdn.com/kf/Hf6b6c095fabe4b9486a8fc767252c9caU.png)
+
+看代码
+
+```
+// 在单链表最后，插入一个元素， elem 是要插入的值
+void InsertEndingElem(Node *head, int elem) {
+    Node *now_node = head;  // 当前的 node，用于遍历 list
+    Node *new_node = malloc(sizeof(int));  // 新建的 node ，即要插入的新 node
+
+    // 判断是否新建 node 成功
+    if (new_node == NULL) {
+        printf("insert ending element failed!");
+        exit(-1);
+    }
+
+    // 新建的 node 在 list 末尾，故需要指向 NULL， 同时设置 data
+    new_node->data = elem;
+    new_node->next = NULL;
+
+    // 遍历 node，把当前 node 变为最后一个 node
+    while (now_node->next != NULL) {
+        now_node = now_node->next;
+    }
+    // 最后的 node 连接新 node
+    now_node->next = new_node;
+}
+```
+
+这个函数传入头指针和一个值，然后在末尾插入了一个新节点。
+
+我们先建立了用于遍历的当前节点 now_head, 初始在头节点（头指针）。然后建立了新节点 now_node, 判断是否建立成功，然后把值存在新节点，又这个节点插入后就变成了尾节点，所以要指向 NULL。然后我们通过判断当前节点的下一个是否为 NULL 来判断是否到了尾节点，当前节点一直移动到尾节点。然后当前节点（指向尾节点）连接新节点，这样就插入成功了。
+
+![](https://ae03.alicdn.com/kf/H16177c86b6ce444b89aa973198ad9b51O.png)
+
+我们这只是插入了一个节点，也可以封装一下，插入多个节点
+
+```
+// 在单链表后插入多个元素， num 是数组首地址， n 是数组个数
+void InsertEndingElmes(Node *head, int *nums, int n) {
+    int i;
+
+    for (i = 0; i < n; i++) {
+        InsertEndingElem(head, nums[i]);
+    }
+}
+```
+
+这个函数传入头指针，插入的数组首地址，数组个数，然后把数组中的元素以此插入到链表中。这里比较容易理解，遍历数组，依次调用插入函数即可。不过这里有个问题，因为每次调用插入函数时，都传入了 head 头指针，而每次调用后都要重新从 head 遍历到末尾，这就重复做了一些操作，可以思考一下怎么改进。
+
+我们刚刚实现了在尾节点（tail node) 后插入 node，现在我们来看一下其他地方又怎么实现
+
+![](https://ae02.alicdn.com/kf/H358f3995d5604be9a5f6e26ca16470043.png)
+
+假设我们要在画圈的那个 node 后 insert 一个新的 node。同样的，我们需要 head pointer 记录开始的 node，需要一个当前节点 now_node 遍历到目标节点，然后插入节点，现在我们假设已经遍历找到了目标节点
+
+![](https://ae04.alicdn.com/kf/H672a280c4ba14d8ebf4f62b3494883bej.png)
+
+看图我们知道，要插入的话，只需把 now_node 和 new_node 连接起来，以及 new_node 和目标节点后面那个节点连接起来，也就是连两条线，那么先连哪条有区别吗？我们来看图
+
+![](https://ae03.alicdn.com/kf/H37a6efa751894a76a06ab448ea52d25fk.png)
+
+我们先连 now_node 和 new_node 这条线，我们知道 now_node 现在即目标 node (圈起来的 node)，于是目标 node 连接原先后面的那些 node 断了，因为连接到 new node 去了。现在我们继续，我们现在需要把 new node 连接到圈后面的那个 node，可是刚刚已经断开了，如果我们没有记录它的地址的话，我们就找不到这个 node 了。所以如果先连这条线的话，需要先保存目标 node 后面的 node address
+
+我们来先连后面一条线看看
+
+![](https://ae01.alicdn.com/kf/H89d748f3797a4bdcbeeae778ffd203cdC.png)
+
+我们发现每个 node 都在，并没有丢失
+
+![](https://ae01.alicdn.com/kf/Hf5a19d38629d476890ced914602a8cf9U.png)
+
+我们继续连第二条线，发现成功连上了，这说明我们成功插入了 node。
+
+从上面的分析知道，虽然先连哪条线都能成功，但是先断后连的话，需要占用内存去存 node 的地址，而先连后断则没有这一步，故我们一般都是先连后断的。
+
+通过上面的分析，我们发现，单链表要插入节点的话，只需更改一下 address 就可以了，其时间复杂度是 O(1)。
+
+
+
+```
+
+```
+
+
+
+我们分析了插入中间，以及末尾的节点，现在我们再来看下在开始插入节点又是怎样的
+
+![](https://ae02.alicdn.com/kf/H6fe6dd866d1c4d299e963de78119981cT.png)
+
+我们发现如果有头节点（head node) 的话，同样的头指针记录头节点，当前节点从头节点遍历。我们可以和在中间插入对比一下，细心一点我们会发现它们的过程是一样的，事实上我们也可以把这个当作在头节点后插入节点，这也是在中间插入的一种。所以有头节点的话，实现比较容易理解。
+
+```
+
+```
+
+
+
+但是我们知道，还有没有头节点这种情况，那么这种情况又是怎么样的呢？
+
+
+
+```
+
+```
+
+
+
+
+
+经过上面分析可以看出，如果有头节点的话，对头节点的操作和中间节点的操作是一样的，所以这也是我们一般要使用头节点的原因之一。
+
 
 
 
