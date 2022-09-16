@@ -10,24 +10,27 @@ on:
 jobs:
   build-and-deploy:
     # 服务器环境：最新版 Ubuntu
-    runs-on: ubuntu-latest      
+    runs-on: ubuntu-latest
     steps:
-      # 拉取代码      
+      # 拉取代码
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          persist-credentials: false      
+          persist-credentials: false
 
-      # 生成静态文件
+      # 1、生成静态文件
       - name: Build
-        run: |
+        run: | 
             wget https://github.com/gohugoio/hugo/releases/download/v0.51/hugo_0.51_Linux-64bit.deb
             sudo dpkg -i hugo*.deb
             hugo
+            ls
 
-      # 部署到 GitHub Pages
-      - name: Push
-        uses: edte/edte.github.io@v3
+      # 2、部署到 GitHub Pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          REPOSITORY_NAME: edte/edte.github.io
           BRANCH: master
+          FOLDER: public
