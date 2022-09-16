@@ -33,4 +33,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           REPOSITORY_NAME: edte/edte.github.io
           BRANCH: master
-          FOLDER: public
+          FOLDER: ./
