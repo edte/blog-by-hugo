@@ -10,13 +10,13 @@ on:
 jobs:
   build-and-deploy:
     # 服务器环境：最新版 Ubuntu
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest      
     steps:
-      # 拉取代码
-      - name: Pull
-        uses: edte/blog-by-hugo
+      # 拉取代码      
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          persist-credentials: false      
 
       # 生成静态文件
       - name: Build
@@ -27,7 +27,7 @@ jobs:
 
       # 部署到 GitHub Pages
       - name: Push
-        uses: edte/edte.github.io
+        uses: edte/edte.github.io@v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: master
